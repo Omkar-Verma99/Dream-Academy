@@ -15,7 +15,8 @@
     "sanity:schema": "sanity schema deploy",
     "sanity:seed": "node scripts/seed-sanity.mjs",
     "sanity:seed:full": "node scripts/seed-sanity-full.mjs",
-    "sanity:seed:content": "node scripts/seed-sanity-content.mjs"
+    "sanity:seed:content": "node scripts/seed-sanity-content.mjs",
+    "vercel:env": "node scripts/push-vercel-env.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",

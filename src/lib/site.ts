@@ -1,10 +1,20 @@
+function resolveSiteUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+  if (process.env.VERCEL_URL && process.env.VERCEL_ENV !== "production") {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return "https://dreamacademy.drkpchandra.com";
+}
+
 export const siteConfig = {
   name: "DREAM Academy",
   fullName:
     "Diabetes Research & Excellence in Advanced Metabolic Medicine Academy",
   description:
     "A registered charitable trust advancing diabetes research, metabolic medicine, medical education, and community health across India.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://dreamacademy.in",
+  url: resolveSiteUrl(),
   establishedYear: "2019",
   locale: "en-IN",
   contact: {
