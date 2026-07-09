@@ -1,0 +1,62 @@
+export const brandPillars = [
+  {
+    key: "research",
+    label: "Research",
+    motto: "Evidence that travels from lab to village.",
+    color: "blue",
+    soft: "bg-brand-soft",
+    orb: "bg-brand",
+    href: "/research",
+  },
+  {
+    key: "education",
+    label: "Education",
+    motto: "Training clinicians who serve communities.",
+    color: "crimson",
+    soft: "bg-crimson-soft",
+    orb: "bg-crimson",
+    href: "/academy",
+  },
+  {
+    key: "innovation",
+    label: "Innovation",
+    motto: "New ideas for metabolic care in India.",
+    color: "orange",
+    soft: "bg-orange-soft",
+    orb: "bg-orange",
+    href: "/what-we-do",
+  },
+  {
+    key: "community",
+    label: "Community",
+    motto: "Camps, screening, and local partnerships.",
+    color: "green",
+    soft: "bg-green-soft",
+    orb: "bg-green",
+    href: "/events#diabetes-camps",
+  },
+  {
+    key: "compassion",
+    label: "Compassion",
+    motto: "Patient dignity at the centre of every visit.",
+    color: "purple",
+    soft: "bg-purple-soft",
+    orb: "bg-purple",
+    href: "/about",
+  },
+  {
+    key: "collaboration",
+    label: "Collaboration",
+    motto: "CSR, research, and institutional partners.",
+    color: "teal",
+    soft: "bg-teal-soft",
+    orb: "bg-teal",
+    href: "/get-involved#csr",
+  },
+] as const;
+
+export const brandTaglineParts = [
+  { text: "Advancing Science", tone: "text-brand" },
+  { text: "Empowering Health", tone: "text-crimson" },
+  { text: "Transforming Lives", tone: "text-green" },
+] as const;
