@@ -2,6 +2,8 @@
 
 import { z } from "zod";
 
+import { saveFormSubmission } from "@/lib/forms/save-submission";
+
 const volunteerSchema = z.object({
   name: z.string().min(2, "Please enter your full name."),
   email: z.string().email("Please enter a valid email address."),
@@ -42,11 +44,21 @@ export async function submitVolunteer(
     };
   }
 
-  if (!process.env.RESEND_API_KEY) {
+  const saved = await saveFormSubmission({
+    formType: "volunteer",
+    name: parsed.data.name,
+    email: parsed.data.email,
+    phone: parsed.data.phone,
+    background: parsed.data.background,
+    message: parsed.data.message,
+    payload: parsed.data,
+  });
+
+  if (!saved.ok) {
     return {
       success: false,
       message:
-        "Volunteer applications are being configured online. Please email chandradiabetesclinic@gmail.com with your details and we will contact you.",
+        "We could not save your application right now. Please email chandradiabetesclinic@gmail.com with your details.",
     };
   }
 

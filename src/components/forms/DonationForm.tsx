@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { submitDonationIntent } from "@/app/actions/donation";
 import { downloadDonationReceiptPdf } from "@/lib/donation/receipt-pdf";
 import { siteConfig } from "@/lib/site";
 
@@ -14,6 +15,7 @@ export function DonationForm() {
     "one-time",
   );
   const [message, setMessage] = useState<string | null>(null);
+  const [pending, setPending] = useState(false);
 
   const effectiveAmount =
     customAmount.trim() !== "" ? Number(customAmount) : amount;
@@ -24,9 +26,10 @@ export function DonationForm() {
   return (
     <form
       className="mt-6 space-y-6"
-      onSubmit={(event) => {
+      onSubmit={async (event) => {
         event.preventDefault();
         setMessage(null);
+        setPending(true);
 
         const form = event.currentTarget;
         const formData = new FormData(form);
@@ -38,11 +41,13 @@ export function DonationForm() {
 
         if (!Number.isFinite(effectiveAmount) || effectiveAmount < 100) {
           setMessage("Please enter a donation amount of at least ₹100.");
+          setPending(false);
           return;
         }
 
         if (!consent) {
           setMessage("Please confirm the 80G receipt download to continue.");
+          setPending(false);
           return;
         }
 
@@ -55,6 +60,16 @@ export function DonationForm() {
           frequency,
         });
 
+        await submitDonationIntent({
+          donorName,
+          email,
+          phone,
+          pan,
+          amount: effectiveAmount,
+          frequency,
+        });
+
+        setPending(false);
         setMessage(
           "Your 80G acknowledgment PDF has been downloaded. Online payment via Razorpay will be enabled soon — email us to complete your donation today.",
         );
@@ -193,12 +208,14 @@ export function DonationForm() {
 
       <button
         type="submit"
-        className="btn-primary w-full rounded-full px-4 py-3 font-sans text-sm font-bold"
+        disabled={pending}
+        className="btn-primary w-full rounded-full px-4 py-3 font-sans text-sm font-bold disabled:opacity-60"
       >
-        Download 80G receipt PDF · ₹
-        {Number.isFinite(effectiveAmount)
-          ? effectiveAmount.toLocaleString("en-IN")
-          : "0"}
+        {pending ? "Saving…" : "Download 80G receipt PDF · ₹"}
+        {!pending &&
+          (Number.isFinite(effectiveAmount)
+            ? effectiveAmount.toLocaleString("en-IN")
+            : "0")}
       </button>
 
       {message ? (

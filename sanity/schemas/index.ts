@@ -2,6 +2,7 @@ import { camp } from "./camp";
 import { blogPost } from "./blogPost";
 import { event } from "./event";
 import { focusArea } from "./focusArea";
+import { formSubmission } from "./formSubmission";
 import { publication } from "./publication";
 import { researchProject } from "./researchProject";
 import { siteSettings } from "./siteSettings";
@@ -16,4 +17,5 @@ export const schemaTypes = [
   blogPost,
   researchProject,
   publication,
+  formSubmission,
 ];

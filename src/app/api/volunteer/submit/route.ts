@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { saveFormSubmission } from "@/lib/forms/save-submission";
 import { getClientIp, checkRateLimit } from "@/lib/api/rate-limit";
 import { jsonError, jsonSuccess } from "@/lib/api/response";
 
@@ -28,6 +29,20 @@ export async function POST(request: Request) {
   const parsed = volunteerSchema.safeParse(body);
   if (!parsed.success) {
     return jsonError(parsed.error.issues[0]?.message ?? "Validation failed.");
+  }
+
+  const saved = await saveFormSubmission({
+    formType: "volunteer",
+    name: parsed.data.name,
+    email: parsed.data.email,
+    phone: parsed.data.phone,
+    background: parsed.data.background,
+    message: parsed.data.message,
+    payload: parsed.data,
+  });
+
+  if (!saved.ok) {
+    return jsonError("Could not save your application. Please try again later.", 500);
   }
 
   return jsonSuccess({ received: true });

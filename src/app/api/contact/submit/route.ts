@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { saveFormSubmission } from "@/lib/forms/save-submission";
 import { getClientIp, checkRateLimit } from "@/lib/api/rate-limit";
 import { jsonError, jsonSuccess } from "@/lib/api/response";
 
@@ -29,6 +30,18 @@ export async function POST(request: Request) {
     return jsonError(parsed.error.issues[0]?.message ?? "Validation failed.");
   }
 
-  // TODO: Send via Resend when RESEND_API_KEY is configured.
+  const saved = await saveFormSubmission({
+    formType: "contact",
+    name: parsed.data.name,
+    email: parsed.data.email,
+    subject: parsed.data.subject,
+    message: parsed.data.message,
+    payload: parsed.data,
+  });
+
+  if (!saved.ok) {
+    return jsonError("Could not save your message. Please try again later.", 500);
+  }
+
   return jsonSuccess({ received: true });
 }

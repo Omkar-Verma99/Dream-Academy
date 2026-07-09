@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { saveFormSubmission } from "@/lib/forms/save-submission";
 import { getClientIp, checkRateLimit } from "@/lib/api/rate-limit";
 import { jsonError, jsonSuccess } from "@/lib/api/response";
 
@@ -23,6 +24,16 @@ export async function POST(request: Request) {
   const parsed = newsletterSchema.safeParse(body);
   if (!parsed.success) {
     return jsonError(parsed.error.issues[0]?.message ?? "Validation failed.");
+  }
+
+  const saved = await saveFormSubmission({
+    formType: "newsletter",
+    email: parsed.data.email,
+    payload: parsed.data,
+  });
+
+  if (!saved.ok) {
+    return jsonError("Could not save subscription. Please try again later.", 500);
   }
 
   return jsonSuccess({ subscribed: true });

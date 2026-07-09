@@ -71,3 +71,18 @@ export const portalResearchByIdQuery = `*[_type == "researchProject" && _id == $
   principalInvestigator,
   body
 }`;
+
+export const portalFormSubmissionsQuery = `*[_type == "formSubmission"] | order(submittedAt desc) {
+  _id,
+  formType,
+  submittedAt,
+  name,
+  email,
+  phone,
+  pan,
+  subject,
+  message,
+  background,
+  amount,
+  frequency
+}`;

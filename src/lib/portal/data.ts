@@ -5,6 +5,7 @@ import {
   portalCampsQuery,
   portalEventByIdQuery,
   portalEventsQuery,
+  portalFormSubmissionsQuery,
   portalResearchByIdQuery,
   portalResearchQuery,
 } from "./queries";
@@ -56,6 +57,21 @@ export type PortalResearchListItem = {
   startDate?: string;
   principalInvestigator?: string;
   bodyText?: string;
+};
+
+export type PortalFormSubmission = {
+  _id: string;
+  formType: string;
+  submittedAt: string;
+  name?: string;
+  email?: string;
+  phone?: string;
+  pan?: string;
+  subject?: string;
+  message?: string;
+  background?: string;
+  amount?: number;
+  frequency?: string;
 };
 
 export async function getPortalCamps() {
@@ -111,4 +127,10 @@ export async function getPortalResearchById(id: string) {
     id,
   });
   return project ? mapPortalResearch(project) : null;
+}
+
+export async function getPortalFormSubmissions() {
+  return (
+    (await sanityFetch<PortalFormSubmission[]>(portalFormSubmissionsQuery)) ?? []
+  );
 }

@@ -2,6 +2,8 @@
 
 import { z } from "zod";
 
+import { saveFormSubmission } from "@/lib/forms/save-submission";
+
 const contactSchema = z.object({
   name: z.string().min(2, "Please enter your full name."),
   email: z.string().email("Please enter a valid email address."),
@@ -38,13 +40,20 @@ export async function submitContact(
     };
   }
 
-  // TODO: Integrate Resend when RESEND_API_KEY is configured.
-  const resendKey = process.env.RESEND_API_KEY;
-  if (!resendKey) {
+  const saved = await saveFormSubmission({
+    formType: "contact",
+    name: parsed.data.name,
+    email: parsed.data.email,
+    subject: parsed.data.subject,
+    message: parsed.data.message,
+    payload: parsed.data,
+  });
+
+  if (!saved.ok) {
     return {
       success: false,
       message:
-        "Online messaging is being configured. Please email us directly at chandradiabetesclinic@gmail.com and we will respond shortly.",
+        "We could not save your message right now. Please email chandradiabetesclinic@gmail.com directly.",
     };
   }
 

@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { CalendarDays, Camera, FlaskConical, LayoutDashboard, LogOut } from "lucide-react";
+import {
+  CalendarDays,
+  Camera,
+  ClipboardList,
+  FlaskConical,
+  LayoutDashboard,
+  LogOut,
+} from "lucide-react";
 
 import { logoutStaff } from "@/app/actions/auth";
 import { Container } from "@/components/layout/Container";
@@ -9,6 +16,7 @@ const links = [
   { href: "/portal/camps", label: "Camps", icon: Camera },
   { href: "/portal/events", label: "Events", icon: CalendarDays },
   { href: "/portal/research", label: "Research", icon: FlaskConical },
+  { href: "/portal/submissions", label: "Submissions", icon: ClipboardList },
 ] as const;
 
 export function PortalNav({ email }: { email: string }) {

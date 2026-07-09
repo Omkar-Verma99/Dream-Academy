@@ -2,6 +2,8 @@
 
 import { z } from "zod";
 
+import { saveFormSubmission } from "@/lib/forms/save-submission";
+
 const newsletterSchema = z.object({
   email: z.string().email("Please enter a valid email address."),
 });
@@ -26,10 +28,21 @@ export async function subscribeNewsletter(
     };
   }
 
-  // TODO: Integrate Resend + rate limiting via Upstash when credentials are configured.
+  const saved = await saveFormSubmission({
+    formType: "newsletter",
+    email: parsed.data.email,
+    payload: parsed.data,
+  });
+
+  if (!saved.ok) {
+    return {
+      success: false,
+      message: "Subscription could not be saved. Please try again later.",
+    };
+  }
+
   return {
     success: true,
-    message:
-      "Thank you. You have been subscribed to DREAM Academy updates.",
+    message: "Thank you. You have been subscribed to DREAM Academy updates.",
   };
 }
