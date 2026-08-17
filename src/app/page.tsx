@@ -2,6 +2,7 @@ import { AboutSection } from "@/components/home/AboutSection";
 import { BrandPillarsSection } from "@/components/home/BrandPillarsSection";
 import { FocusAreasSection } from "@/components/home/FocusAreasSection";
 import { GetInvolvedSection } from "@/components/home/GetInvolvedSection";
+import { HealthTalksSection } from "@/components/home/HealthTalksSection";
 import { HomeLocationSection } from "@/components/home/HomeLocationSection";
 import { FieldGallerySection } from "@/components/home/FieldGallerySection";
 import { HeroSection } from "@/components/home/HeroSection";
@@ -14,6 +15,7 @@ import { UpcomingEventsSection } from "@/components/home/UpcomingEventsSection";
 import { createPageMetadata } from "@/lib/metadata";
 import { getHomepageData } from "@/lib/content/homepage";
 import { getFieldGallerySlides } from "@/lib/content/field-gallery";
+import { getYoutubeChannelVideos } from "@/lib/youtube";
 import { campsToNewsAlerts } from "@/lib/content/news-alerts";
 import { siteConfig } from "@/lib/site";
 
@@ -50,9 +52,10 @@ function OrganizationJsonLd() {
 }
 
 export default async function HomePage() {
-  const [data, gallerySlides] = await Promise.all([
+  const [data, gallerySlides, healthTalks] = await Promise.all([
     getHomepageData(),
     getFieldGallerySlides(),
+    getYoutubeChannelVideos(6),
   ]);
   const newsAlerts = campsToNewsAlerts(data.recentCamps, 3);
 
@@ -61,6 +64,7 @@ export default async function HomePage() {
       <OrganizationJsonLd />
       <HeroSection />
       <FieldGallerySection slides={gallerySlides} />
+      <HealthTalksSection videos={healthTalks} />
       <ImpactStatsBar stats={data.settings.impactStats} />
       <BrandPillarsSection />
       <NewsAlertsSection alerts={newsAlerts} />

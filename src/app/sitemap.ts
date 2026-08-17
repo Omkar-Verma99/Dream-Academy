@@ -19,6 +19,7 @@ const staticRoutes = [
   "/resources",
   "/blog",
   "/media",
+  "/media/videos",
   "/contact",
   "/transparency",
   "/legal/privacy",

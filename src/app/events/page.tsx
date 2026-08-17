@@ -28,6 +28,7 @@ const pageNav = [
   { href: "#upcoming-events", label: "Upcoming" },
   { href: "#diabetes-camps", label: "Camps" },
   { href: "/events/camps", label: "Gallery" },
+  { href: "/media/videos", label: "Health talks" },
   { href: "#past-events", label: "Past events" },
   { href: "#campaigns", label: "Campaigns" },
 ] as const;

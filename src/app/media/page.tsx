@@ -13,7 +13,7 @@ const { metadata, Page } = createHubPage({
     { title: "Press releases", href: "/media/press-releases", description: "Official announcements and programme launches." },
     { title: "News coverage", href: "/media/news-coverage", description: "Media coverage of DREAM Academy programmes." },
     { title: "Photos", href: "/media/photos", description: "Photograph galleries by event." },
-    { title: "Videos", href: "/media/videos", description: "Video library from camps and conferences." },
+    { title: "Health talks", href: "/media/videos", description: "Watch डॉक्टर की पंचायत on this site, or open the YouTube channel." },
     { title: "Podcasts", href: "/media/podcasts", description: "Podcast episodes on metabolic health." },
   ],
 });

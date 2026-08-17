@@ -55,7 +55,10 @@ export function HeroSection() {
               <Button href="/what-we-do" size="lg">
                 Explore our work
               </Button>
-              <Button href="/get-involved#donate" variant="secondary" size="lg">
+              <Button href="/#health-talks" variant="secondary" size="lg">
+                Watch health talks
+              </Button>
+              <Button href="/get-involved#donate" variant="ghost" size="lg">
                 Donate now
               </Button>
             </div>

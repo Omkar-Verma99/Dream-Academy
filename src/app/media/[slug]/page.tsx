@@ -18,11 +18,6 @@ const pages = {
     description: "Photo galleries from DREAM Academy events.",
     paragraphs: ["Photograph galleries are available on the events gallery page and individual camp reports."],
   },
-  videos: {
-    title: "Videos",
-    description: "Video library from DREAM Academy programmes.",
-    paragraphs: ["Camp and conference videos are embedded on individual event pages when available."],
-  },
   podcasts: {
     title: "Podcasts",
     description: "Podcast episodes on metabolic health.",

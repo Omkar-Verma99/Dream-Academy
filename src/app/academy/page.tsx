@@ -26,6 +26,7 @@ const pageNav = [
   { href: "#certificate-courses", label: "Certificate courses" },
   { href: "#fellowship-programs", label: "Fellowships" },
   { href: "#webinars", label: "Webinars" },
+  { href: "/media/videos", label: "Health talks" },
   { href: "#conferences", label: "Conferences" },
   { href: "#workshops", label: "Workshops" },
   { href: "#online-learning", label: "Online learning" },

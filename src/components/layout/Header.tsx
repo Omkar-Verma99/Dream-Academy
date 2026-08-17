@@ -168,6 +168,9 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
+          <Button href="/media/videos" variant="ghost" size="sm">
+            Health talks
+          </Button>
           <Button href="/get-involved#donate" variant="secondary" size="sm">
             Donate
           </Button>
@@ -242,6 +245,9 @@ export function Header() {
               ))}
             </ul>
             <div className="mt-6 grid gap-3">
+              <Button href="/media/videos" className="w-full">
+                Health talks
+              </Button>
               <Button href="/get-involved#donate" className="w-full">
                 Donate
               </Button>

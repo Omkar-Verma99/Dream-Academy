@@ -65,6 +65,17 @@ export const mainNavigation = [
     ],
   },
   {
+    label: "Media",
+    href: "/media",
+    children: [
+      { label: "Health talks", href: "/media/videos" },
+      { label: "Media centre", href: "/media" },
+      { label: "Photos", href: "/events/camps" },
+      { label: "Press releases", href: "/media/press-releases" },
+      { label: "News coverage", href: "/media/news-coverage" },
+    ],
+  },
+  {
     label: "Get Involved",
     href: "/get-involved",
     children: [
@@ -92,10 +103,11 @@ export const footerNavigation = {
     { label: "Community Outreach", href: "/outreach" },
   ],
   resources: [
+    { label: "Health talks", href: "/media/videos" },
+    { label: "Media Centre", href: "/media" },
     { label: "Publications", href: "/publications" },
     { label: "Resources", href: "/resources" },
     { label: "Blog", href: "/blog" },
-    { label: "Media Centre", href: "/media" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/legal/privacy" },

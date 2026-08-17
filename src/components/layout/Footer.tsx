@@ -51,7 +51,7 @@ export function Footer() {
               </h2>
               <ul className="mt-4 space-y-2.5">
                 {[...footerNavigation.programmes, ...footerNavigation.resources]
-                  .slice(0, 6)
+                  .slice(0, 8)
                   .map((item) => (
                     <li key={item.href}>
                       <Link

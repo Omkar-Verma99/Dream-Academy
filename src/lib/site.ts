@@ -45,6 +45,11 @@ export const siteConfig = {
     },
     appointmentPhones: ["+918604804125", "05223593056"],
   },
+  youtube: {
+    channelId: "UCXwHzAerW7ehVkMZwOTkBfQ",
+    channelName: "Health talks: डॉक्टर की पंचायत",
+    url: "https://www.youtube.com/channel/UCXwHzAerW7ehVkMZwOTkBfQ",
+  },
   registration: {
     pan: process.env.NEXT_PUBLIC_TRUST_PAN ?? "On request",
     section12A: process.env.NEXT_PUBLIC_TRUST_12A ?? "On request",
